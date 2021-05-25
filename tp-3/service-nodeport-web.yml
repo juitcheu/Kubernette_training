@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-nodeport-web
+  labels:
+    app: web
+spec:
+  type: NodePort #type de service
+  selector:
+    app: web #pod de nom container "web" quil doit selectionner 
+  ports:
+  - protocol: TCP #protocol sur le quel le trafic sera diriger
+    port: 8080 #port d'ecoute interne du cluster
+    targetPort: 8080 #port d'ecoute du pod
+    nodePort: 30008 # port externe a exposer
